@@ -12,6 +12,7 @@
         var self = this;
 
         self.steps = [];
+
         StepService.get().then(function(response){
             self.steps = response.data;
         });

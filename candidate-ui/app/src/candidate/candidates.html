@@ -1,0 +1,51 @@
+<table class="table">
+	<tr>
+		<th></th>
+		<th>
+			<span class="sortorder" ng-class="{reverse:reverse}"></span>
+			<span ng-click="predicate='id';reverse=!reverse">Id</span>
+		</th>
+		<th>
+			<span class="sortorder" ng-class="{reverse:reverse}"></span>
+			<span ng-click="predicate='name';reverse=!reverse">Name</span>
+		</th>
+		<th>
+			<span class="sortorder" ng-class="{reverse:reverse}"></span>
+			<span ng-click="predicate='enabled';reverse=!reverse">Enabled ?</span>
+		</th>
+	</tr>
+	<tr ng-repeat="candidate in ctrl.candidates | orderBy : predicate : reverse" >
+		<td><input type="checkbox" ng-click="ctrl.toggleSelection(candidate.id);"></td>
+		<td>{{candidate.id}}</td>
+		<td>{{candidate.name}}</td>
+		<td>
+			<div class="btn-group">
+				<label class="btn btn-primary" ng-model="candidate.enabled" btn-radio="true" ng-change="ctrl.onchange(candidate)">Enable</label>
+    			<label class="btn btn-primary" ng-model="candidate.enabled" btn-radio="false" ng-change="ctrl.onchange(candidate)">Disable</label>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<button class="btn" ng-click="ctrl.deleteSelected()">Delete selected</button>
+		</td>
+		<td colspan="2">
+			<form name="form" ng-submit="ctrl.post(candidate)">
+				<label>
+		       		<input type="text" class="form-control" name="name" ng-model="candidate.name" ng-required="true" ng-minlength="1" ng-maxlength="30" placeholder="Name">
+		    	</label>
+
+		    	<span ng-messages="form.name.$error" role="alert">
+				    <span ng-message="required">*</span>
+				    <span ng-message="minlength, maxlength">
+				      The name must be between 1 and 30 characters long
+				    </span>
+		  		</span>
+
+		  		<div><input type="submit" class="btn" value="Add"/></div>
+			</form>
+		</td>
+	</tr>
+</table>
+
+

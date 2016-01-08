@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app', ['ngMockE2E', 'ui.router', 'ui.bootstrap','app.home', 'app.step'])
+        .module('app', ['ngMockE2E', 'ui.router', 'ngMessages', 'ui.bootstrap','app.home', 'app.step', 'app.candidate'])
         .config([
             '$stateProvider', '$urlRouterProvider',
             AppConfig
